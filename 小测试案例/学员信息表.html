@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<style>
+  table {
+    width: 500px;
+    border: 1px solid black;
+  }
+
+  table tr td {
+    text-align: center;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <h2>学员信息表</h2>
+    <p>姓名: <input type="text" v-model="name"></p>
+    <p>年龄: <input type="text" v-model="age"></p>
+    <p>性别: <input type="text" v-model="sex"></p>
+    <p>学籍: <input type="text" v-model="sta"></p>
+
+    <button @click="add">提交</button>
+    <table>
+      <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>学籍</th>
+        <th>操作</th>
+
+      </tr>
+      <tr v-for="(item,index) in stus">
+        <td>{{item.name}}</td>
+        <td>{{item.age}}</td>
+        <td>{{item.sex}}</td>
+        <td>{{item.sta}}</td>
+        <td><button @click="del(index)">删除</button></td>
+      </tr>
+    </table>
+  </div>
+</body>
+<script>
+  Vue.config.productionTip = false
+  new Vue({
+    el: '#app',
+    data: {
+      stus: [
+        {
+          name: '张三',
+          age: 18,
+          sex: '男',
+          sta: '上海'
+        }, {
+          name: '李四',
+          age: 20,
+          sex: '男',
+          sta: '北京'
+        }, {
+          name: '小猪佩奇',
+          age: 15,
+          sex: '男',
+          sta: '广州'
+        }
+      ],
+      name: '',
+      age: '',
+      sex: '',
+      sta: ''
+    },
+    methods: {
+      add() {
+        //不能为空的判断
+        if (this.name == '') {
+          alert('姓名不能为空')
+          return false
+        }
+        if (this.age == '') {
+          alert('年龄不能为空')
+          return false
+        }
+        if (this.sex == '') {
+          alert('性别不能为空')
+          return false
+        }
+        if (this.sta == '') {
+          alert('学籍不能为空')
+          return false
+        }
+        //拼接成数组元素格式，即对象格式
+        let newmsg = {
+          name: this.name,
+          age: this.age,
+          sex: this.sex,
+          sta: this.sta
+        }
+        //把拼接好的数据放回stus
+        this.stus.push(newmsg)
+        //提交之后清空input
+        this.name = ''
+        this.age = ''
+        this.sex = ''
+        this.sta = ''
+
+      },
+      del(i) {
+        // console.log(i)
+        this.stus.splice(i, 1)
+      }
+    },
+  })
+</script>
+
+</html>

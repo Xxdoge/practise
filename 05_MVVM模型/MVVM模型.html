@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVVM模型</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+        MVVM模型
+            M：模型model 对应data中的数据
+            V：视图view模板
+            VM:视图模型viewmodel vue实例对象
+    
+
+        观察发现
+            1.data中所有的属性，最后都会出现在vm身上
+            2.vm身上的所有属性，及vue原型上的所有属性，在vue模板中都可以直接使用
+
+    -->
+
+  <!-- 整个div就是View -->
+  <div id="root">
+    <h1>学校名称: {{name}}</h1>
+    <h1>学校地址: {{address}}</h1>
+    <h1>测试一下1: {{1+1}}</h1>
+    <h1>测试一下2: {{$options}}</h1>
+    <h1>测试一下3: {{$emit}}</h1>
+    <h1>测试一下4: {{_c}}</h1>
+
+
+  </div>
+</body>
+
+<script>
+  Vue.config.productionTip = false
+
+  // 这个Vue就是ViewModel
+  const vm = new Vue({
+    el: '#root',
+    // data里面的东西就是Model
+    data: {
+      name: '尚硅谷',
+      address: '上海',
+      a: 1
+    }
+  })
+  console.log(vm);
+
+</script>
+
+</html>

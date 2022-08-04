@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Style Guide</title>
+  <meta name="description" content="不超过150个字符">
+
+</head>
+
+<body>
+
+</body>
+<script>
+
+  function printArray(arr) {
+    for (var key in arr) {
+      console.log(arr[key]);
+    }
+  }
+  printArray([0, 1, 2, 3]);  // This works.
+  var a = new Array(10);
+  printArray(a);  // This is wrong.
+  printArray(a);  // This is wrong.
+  a = [0, 1, 2, 3];
+  a.buhu = 'wine';
+  printArray(a);  // This is wrong again.
+  a = new Array;
+  a[3] = 3;
+  printArray(a);  // This is wrong again.
+
+  // Recommended
+  function pA(arr) {
+    var l = arr.length;
+    for (var i = 0; i < l; i++) {
+      console.log(arr[i]);
+    }
+  }
+  pA([0, 1, 2, 3])
+
+  var a = [1, 2, 3, 4, 4, 5, 6, 5]
+  a = [...a]
+  console.log(a)
+  console.log([...a].length)
+
+</script>
+
+</html>

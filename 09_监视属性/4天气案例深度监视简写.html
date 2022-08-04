@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天气案例-深度监视简写</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    
+ -->
+
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <button @click="changeweather">切换天气</button>
+  </div>
+</body>
+
+<script>
+  Vue.config.productionTip = false
+
+  const vm = new Vue({
+    el: '#root',
+    data: {
+      isHot: true,
+
+    },
+    methods: {
+      changeweather() {
+        this.isHot = !this.isHot
+      }
+    },
+    computed: {
+      info() {
+        return this.isHot ? '炎热' : '凉爽'
+      }
+    },
+    watch: {
+      //正常写法
+      // isHot: {
+      //     // immediate: true, //初始化时让handler立即调用一下
+      //     // deep: true,
+      //     //handler什么时候调用，当isHot发生改变时
+      //     handler(newvalue, oldvalue) {
+      //         console.log('isHot被修改了', newvalue, oldvalue)
+      //     }
+      // },
+      //简写
+      isHot(newvalue, oldvalue) {
+        console.log('isHot被修改了', newvalue, oldvalue)
+      }
+
+    }
+  })
+
+  //正常写法
+  // vm.$watch('isHot',{
+  //     immediate:true,
+  //     deep:true,
+  //     handler(newvalue,oldvalue){
+  //         console.log('isHot被修改',newvalue,oldvalue)
+  //     }
+  // })
+
+  //简写
+  vm.$watch('isHot', function (newvalue, oldvalue) {
+    console.log('isHot被修改', newvalue, oldvalue)
+  })
+
+
+</script>
+
+</html>
