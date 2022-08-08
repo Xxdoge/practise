@@ -10,17 +10,38 @@
 
 <body>
   <div id="root">
-
+    <count></count>
   </div>
 </body>
 
 <script>
   Vue.config.productionTip = false
 
+  const count = Vue.extend({
+    name: 'count',
+    template: `
+        <div>
+          <h2>{{n}}</h2>
+          <button @click="n++">+1</button>
+        
+        </div>
+    `,
+    data() {
+      return {
+        n: 1
+      }
+    },
+
+
+  })
+
   const vm = new Vue({
     el: '#root',
     data: {
       name: ''
+    },
+    components: {
+      count
     }
   })
 </script>

@@ -10,17 +10,35 @@
 
 <body>
   <div id="root">
-
+    <school></school>
   </div>
 </body>
 
 <script>
   Vue.config.productionTip = false
 
-  const vm = new Vue({
+  const school = Vue.extend({
+    template: `
+      <div>
+        <h2>学校名称: {{name}}</h2>    
+        <h2>学校地址: {{address}}</h2>    
+      </div>
+  `,
+    data() {
+      return {
+        name: 'Vue',
+        address: '上海'
+      }
+    }
+  })
+
+  new Vue({
     el: '#root',
     data: {
       name: ''
+    },
+    components: {
+      school: school
     }
   })
 </script>
