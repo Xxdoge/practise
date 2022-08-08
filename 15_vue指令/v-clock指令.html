@@ -7,20 +7,29 @@
   <title></title>
   <script type="text/javascript" src="../js/vue.js"></script>
 </head>
+<style>
+  [v-cloak] {
+    display: none
+  }
+</style>
+
 
 <body>
+  <!-- 
+    v-cloak指令 无值 只是一个属性 Vue实例创建完毕并接管容器后，会删除该属性
+                使用css配合 可以解决网速慢 页面加载{{xxx}}的问题
+   -->
   <div id="root">
-
+    <h2 v-cloak>{{name}}</h2>
   </div>
 </body>
 
 <script>
   Vue.config.productionTip = false
-
-  const vm = new Vue({
+  new Vue({
     el: '#root',
     data: {
-      name: ''
+      name: '尚硅谷'
     }
   })
 </script>
